@@ -55,7 +55,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/webgraph">WebGraph</a>
+                                    <a href="webgraph.html">WebGraph</a>
                                 </li>
                             </ul>
                         </div>
@@ -150,9 +150,9 @@
                                 a.setAttribute("id", this.id + "autocomplete-list");
                                 a.setAttribute("class", "autocomplete-items");
                                 this.parentNode.appendChild(a);
-                                var url = 'http://localhost:9090/api/autocomplete?input=' + this.value + '&lang=' + language.toLowerCase();
+                                var url = 'http://localhost:7080/api/autocomplete?input=' + this.value + '&lang=' + language.toLowerCase();
                                 console.log(url);
-                                fetch(url)
+                                fetch(encodeURI(url))
                                     .then(function (resp) {
                                         return resp.json();
                                     })
@@ -238,7 +238,7 @@
                         <b>Version</b>
                         1.0 Beta
                     </div>
-                    <strong>Copyright &copy; 2019<a href="https://datapirates.tk">DataPirates</a>.
+                    <strong>Copyright &copy; 2019 <a href="https://datapirates.tk">DataPirates</a>.
                     </strong>
                     All rights
                     reserved.
@@ -267,7 +267,8 @@
                 }
                 document.getElementById('loading').classList.remove("hidden");
                 document.getElementById('loading').classList.add("visible");
-                var url = 'http://localhost:9090/search?query=' + document.getElementById("query").value + '&lang=' + language;
+                document.getElementById('search-time').innerHTML = "";
+                var url = 'http://localhost:7080/search?query=' + document.getElementById("query").value + '&lang=' + language.toLowerCase();
                 console.log(url);
                 fetch(url)
                     .then(function (resp) {
