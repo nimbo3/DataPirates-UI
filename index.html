@@ -116,6 +116,8 @@
                                         </ul>
                                     </div>
                                     <input type="text" class="form-control" id="query">
+                                    <span class="input-group-addon"> Cluster <input type="checkbox" id="cluster"> </span>
+
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-primary" onclick="search()">Go!</button>
                                     </span>
@@ -268,7 +270,7 @@
                 document.getElementById('loading').classList.remove("hidden");
                 document.getElementById('loading').classList.add("visible");
                 document.getElementById('search-time').innerHTML = "";
-                var url = 'http://144.76.1.83:7080/search?query=' + document.getElementById("query").value + '&lang=' + language.toLowerCase();
+                var url = 'http://144.76.1.83:7080/search?query=' + document.getElementById("query").value + '&lang=' + language.toLowerCase() + '&cluster=' + document.getElementById("cluster").checked;
                 console.log(url);
                 fetch(url)
                     .then(function (resp) {
